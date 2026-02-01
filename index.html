@@ -802,8 +802,8 @@
        <p class="text-gray-400 text-lg">Leave your contact details below and tell us what you're interested in.<br>
          We'll reach out with exclusive content and updates.</p>
       </div>
-      <div class="grid md:grid-cols-2 gap-8 items-start"><!-- Form Column -->
-       <div class="gradient-border rounded-2xl p-8 md:p-10">
+      <div class="flex justify-center"><!-- Form Column -->
+       <div id="form-container" class="gradient-border rounded-2xl p-8 md:p-10 w-full max-w-xl">
         <form id="lead-form" action="https://formspree.io/f/mykpkeea" method="POST"><!-- Full Name -->
          <div class="mb-6"><label for="lead-name" class="block text-sm font-medium text-gray-300 mb-2"> Full Name </label> <input type="text" id="lead-name" name="name" placeholder="Enter your name" required class="w-full px-4 py-3 bg-[#0a0f1a] border border-[#1e293b] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00d4ff] transition-colors">
          </div><!-- Email Address -->
@@ -814,19 +814,19 @@
           </div>
          </div><!-- Submit Button --> <button type="submit" id="lead-submit-btn" class="w-full btn-primary px-8 py-4 rounded-xl font-semibold text-[#0a0f1a] text-lg"> Request Information </button>
         </form>
-       </div><!-- Success Message Column -->
-       <div id="lead-success-message" class="hidden">
-        <div class="bg-gradient-to-br from-[#00ff88]/20 to-[#00d4ff]/10 border-2 border-[#00ff88] rounded-2xl p-8 md:p-10 text-center">
-         <div class="w-20 h-20 rounded-full bg-[#00ff88] flex items-center justify-center mx-auto mb-6">
-          <svg class="w-12 h-12 text-[#0a0f1a]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-          </svg>
-         </div>
-         <h3 class="font-display text-2xl font-bold text-white mb-4">Message Sent Successfully!</h3>
-         <p class="text-gray-300 text-lg mb-6">Thank you for your interest! We've received your information and will contact you soon with exclusive content and updates.</p>
-         <div class="bg-[#0a0f1a]/50 rounded-xl p-4 border border-[#00ff88]/30">
-          <p class="text-[#00ff88] font-medium">✓ Your request has been processed</p>
-          <p class="text-gray-400 text-sm mt-2">Check your email inbox for confirmation</p>
-         </div>
+       </div>
+      </div><!-- Success Message (hidden by default, centered) -->
+      <div id="lead-success-message" class="hidden mt-8">
+       <div class="bg-gradient-to-br from-[#00ff88]/20 to-[#00d4ff]/10 border-2 border-[#00ff88] rounded-2xl p-8 md:p-10 text-center max-w-xl mx-auto">
+        <div class="w-20 h-20 rounded-full bg-[#00ff88] flex items-center justify-center mx-auto mb-6">
+         <svg class="w-12 h-12 text-[#0a0f1a]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+         </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-white mb-4">Message Sent Successfully!</h3>
+        <p class="text-gray-300 text-lg mb-6">Thank you for your interest! We've received your information and will contact you soon with exclusive content and updates.</p>
+        <div class="bg-[#0a0f1a]/50 rounded-xl p-4 border border-[#00ff88]/30">
+         <p class="text-[#00ff88] font-medium">✓ Your request has been processed</p>
+         <p class="text-gray-400 text-sm mt-2">Check your email inbox for confirmation</p>
         </div>
        </div>
       </div>
@@ -1385,7 +1385,7 @@
         <div class="bg-[#0a0f1a]/50 rounded-xl p-6 mb-6">
          <h3 class="font-semibold text-white mb-4">You will see:</h3>
          <ul class="space-y-2">
-          <li class="flex items-start gap-3 text-gray-300"><span class="text-[#00d4ff] mt-1">▸</span> <span>Pre-market context and directional bias</span></li>
+          <li class="flex items-start gap-3 text-gray-300"><span class="text-[#00d4ff] mt-1">���</span> <span>Pre-market context and directional bias</span></li>
           <li class="flex items-start gap-3 text-gray-300"><span class="text-[#00d4ff] mt-1">▸</span> <span>Identified high-probability setups</span></li>
           <li class="flex items-start gap-3 text-gray-300"><span class="text-[#00d4ff] mt-1">▸</span> <span>Entry ideas with clearly defined risk</span></li>
           <li class="flex items-start gap-3 text-gray-300"><span class="text-[#00d4ff] mt-1">▸</span> <span>Target projection and real-time trade management</span></li>
@@ -2016,8 +2016,11 @@
             });
             
             if (response.ok) {
-              // Hide form container
-              formContainer.style.display = 'none';
+              // Hide entire form container div
+              const formContainerDiv = document.getElementById('form-container');
+              if (formContainerDiv) {
+                formContainerDiv.style.display = 'none';
+              }
               
               // Show success message
               successMessage.classList.remove('hidden');
@@ -2247,5 +2250,5 @@
     // Initial render
     onConfigChange(config);
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c71e04f454ef63b',t:'MTc2OTk1MzM5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7214b867b5f624',t:'MTc2OTk1NTUzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
